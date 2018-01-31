@@ -8,7 +8,13 @@ public class GameWindow extends JFrame{
 	GameState state;
 	
 	public GameWindow( GameState state ) {
+		super("XOgame");
 		this.state = state;
-			
+		
+		setSize(200, 200);		
+		setVisible(true);
+		setLocation(200, 200);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
 	}
 }

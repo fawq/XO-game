@@ -5,8 +5,10 @@ public class GameWindow extends JFrame{
 
 	JButton buttonTab[][] = new JButton[3][3];
 	
-	public GameWindow() {
-		
+	GameState state;
+	
+	public GameWindow( GameState state ) {
+		this.state = state;
 			
 	}
 }

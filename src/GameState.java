@@ -3,6 +3,15 @@
 
 public class GameState {
 	
+	int id;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	int tab[][] = new int[3][3];
 	int turn = -1; // -1 unset, 0 O , 1 X
 	

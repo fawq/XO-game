@@ -1,6 +1,8 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import org.hibernate.Session;
+
 public class GameWindow extends JFrame{
 
 	JButton buttonTab[][] = new JButton[3][3];
@@ -9,7 +11,12 @@ public class GameWindow extends JFrame{
 	
 	public GameWindow( GameState state ) {
 		super("XOgame");
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        
 		this.state = state;
+		session.save(state);
 		
 		setSize(200, 200);		
 		setVisible(true);

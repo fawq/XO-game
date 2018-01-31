@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.password">902dd692eff79f3d7c7e88441d82055e1ac41c99a332d9e4524961e8b367547f</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-217-245-53.eu-west-1.compute.amazonaws.com:5432/ddc8e79d2j1m7</property>
+        <property name="hibernate.connection.username">ykdoenwszvadbx</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <mapping resource="GameState.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

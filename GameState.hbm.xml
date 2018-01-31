@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-01-31 16:41:49 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="GameState" table="GAMESTATE">
+        <id name="tab" type="int">
+            <column name="TAB" />
+            <generator class="assigned" />
+        </id>
+        <property name="turn" type="int">
+            <column name="TURN" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,6 +1,7 @@
 
 public abstract class Player {
 	
+	
 	int role = -1; //-1 unset 
 	GameState state;
 	

@@ -1,11 +1,10 @@
 
 public class GameState {
-	int x;
-	int y;
 	
-	GameState(int x, int y)
+	int tab[][] = new int[3][3];
+	
+	GameState()
 	{
-		this.x = x;
-		this.y = y;
+		
 	}
 }

@@ -2,6 +2,7 @@
 public class GameState {
 	int x;
 	int y;
+	String nazwa = "Something new";
 	
 	GameState(int x, int y)
 	{

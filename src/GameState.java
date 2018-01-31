@@ -1,15 +1,13 @@
 
 public class GameState {
+
 	int x;
 	int y;
 	String nazwa = "Something new";
+
 	
-	GameState(int x, int y)
-	{
-		this.x = x;
-		this.y = y;
-	}
-	
+	int tab[][] = new int[3][3];
+		
 	GameState()
 	{
 		this.x = 0;

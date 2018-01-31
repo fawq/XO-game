@@ -1,3 +1,4 @@
+package game;
  
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -13,6 +14,7 @@ public class HibernateUtil {
         try {
             Configuration configuration = new Configuration();
             configuration.configure();
+            configuration.addAnnotatedClass(GameState.class);
  
             StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder();
             standardServiceRegistryBuilder.applySettings(configuration.getProperties());

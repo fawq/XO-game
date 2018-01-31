@@ -1,7 +1,9 @@
+package game;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import org.hibernate.Session;
+import org.hibernate.cfg.Configuration;
 
 public class GameWindow extends JFrame{
 
@@ -16,7 +18,12 @@ public class GameWindow extends JFrame{
         session.beginTransaction();
         
 		this.state = state;
-		session.save(state);
+		GameState test = new GameState();
+		session.save(test);
+		
+		session.getTransaction().commit();
+		 
+        HibernateUtil.getSessionFactory().close();
 		
 		setSize(200, 200);		
 		setVisible(true);

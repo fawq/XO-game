@@ -1,4 +1,8 @@
 package game;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -7,23 +11,28 @@ import org.hibernate.cfg.Configuration;
 
 public class GameWindow extends JFrame{
 
-	JButton buttonTab[][] = new JButton[3][3];
+	MyButton buttonTab[][] = new MyButton[3][3];
 	
 	GameState state;
+	Player player;
 	
 	public GameWindow( GameState state ) {
 		super("XOgame");
-		
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        
+		player = new Player(1 , state) {
+		};
 		this.state = state;
-		GameState test = new GameState();
-		session.save(test);
+		getContentPane().setLayout(new GridLayout(3, 3));
 		
-		session.getTransaction().commit();
-		 
-        HibernateUtil.getSessionFactory().close();
+		int xy=0;
+		for (MyButton[] myButtons : buttonTab) {
+			for (MyButton myButton : myButtons) {
+				myButton = new MyButton(player);
+				myButton.setmyX(xy%3);
+				myButton.setmyY(xy/3);
+				xy++;
+				getContentPane().add(myButton);
+			}
+		}	
 		
 		setSize(200, 200);		
 		setVisible(true);
@@ -31,4 +40,5 @@ public class GameWindow extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 	}
+	
 }

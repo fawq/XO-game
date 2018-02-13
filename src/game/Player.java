@@ -14,6 +14,10 @@ public abstract class Player {
 	void move(int x , int y)
 	{
 		state.change( x , y , role);
+		//XOGame.init();
+		//XOGame.session.beginTransaction();
+		XOGame.session.save(state);
+		//XOGame.commit();
 	}
 	
 	

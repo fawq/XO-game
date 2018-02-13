@@ -9,27 +9,52 @@ import javax.persistence.Id;
 
 @Entity
 public class GameState {
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	int id;
-	public int getId() {
-		return id;
-	}
 
+	@Id
+	int id;
+	char[][] tab;
+	int turn = -1; // -1 unset, 0 O , 1 X
+
+	GameState()
+	{
+		tab = new char[3][3];
+	}
+	
+	boolean change(int x , int y , int state)
+	{
+		if(tab[x][y] == -1)
+		{
+			tab[x][y] = (char) state;
+			return true;
+		}
+		return false;
+	}
+	
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	int tab = 2;
-	int turn = -1; // -1 unset, 0 O , 1 X
 	
-	public int getTab() {
-		return tab;
+	public int getId() {
+		return id;
+	}
+	
+	public String getTab() {
+		String temp = new String(tab[0]);
+		temp = temp + new String(tab[1]) + new String(tab[2]);
+		
+		return temp;
 	}
 
-	public void setTab(int tab) {
-		this.tab = tab;
+	public void setTab(String tab) {
+		int i = 0;
+		char[][] temp = new char[3][3];
+		for (char[] cs : temp) {
+			for (char c : cs) {
+				c = tab.charAt(i++);
+			}
+		}
+		this.tab = temp;
 	}
 
 	public int getTurn() {
@@ -38,26 +63,5 @@ public class GameState {
 
 	public void setTurn(int turn) {
 		this.turn = turn;
-	}
-
-	GameState()
-	{
-		/*for(int[] i : tab)
-		{
-			for(int j : i)
-			{
-				j = -1;
-			}
-		}*/
-	}
-	
-	boolean change(int x , int y , int state)
-	{
-		/*if(tab[x][y] == -1)
-		{
-			tab[x][y] = state;
-			return true;
-		}*/
-		return false;
 	}
 }

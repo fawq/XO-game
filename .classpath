@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="lib/spatial/jts-1.13.jar"/>
 	<classpathentry kind="lib" path="lib/spatial/postgresql-42.1.4.jar"/>
 	<classpathentry kind="lib" path="lib/spatial/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

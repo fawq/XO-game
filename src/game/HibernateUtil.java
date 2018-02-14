@@ -5,6 +5,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import account.Account;
+
  
 public class HibernateUtil {
  
@@ -15,6 +17,7 @@ public class HibernateUtil {
             Configuration configuration = new Configuration();
             configuration.configure();
             configuration.addAnnotatedClass(GameState.class);
+            configuration.addAnnotatedClass(Account.class);
  
             StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder();
             standardServiceRegistryBuilder.applySettings(configuration.getProperties());

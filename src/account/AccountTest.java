@@ -13,6 +13,11 @@ public class AccountTest {
 		} catch (AccountException e) {
 			System.out.println(  e.message  );
 		}
+	}
+	
+	@Test
+	public void test1()
+	{
 		try {
 			Account.createAccount("test1", "test1");
 		} catch (AccountException e) {

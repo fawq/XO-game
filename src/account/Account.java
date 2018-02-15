@@ -11,73 +11,82 @@ import game.HibernateUtil;
 
 @Entity
 public class Account {
-	
+
 	@Id
 	String name;
 	int passHash;
-	
-	
-	
-	private Account() {};
-	private Account(String name , String password)
-	{
+
+	private Account() {
+	};
+
+	private Account(String name, String password) {
 		this.name = name;
 		passHash = getHash(password);
 	}
-	
-	static Account signIn(String name , String password)
-	{
-		
-		return null;
-	}
-	static Account createAccount(String name , String password) throws AccountException
-	{
+
+	static Account signIn(String name, String password) throws AccountException {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
- 
-        List<Account> accounts = session.createQuery("from Account where name='"+name+"'").list();
-        
+		session.beginTransaction();
+
+		Account a = session.get(Account.class, name);
+
 		session.getTransaction().commit();
-		
-		if(accounts.size()>0)
-		{
+
+		if (a == null) {
+			throw new AccountException("Account doen't exist");
+		}
+		if (getHash(password) != a.passHash) {
+			throw new AccountException("Wrong password");
+		}
+
+		return a;
+	}
+
+	static Account createAccount(String name, String password) throws AccountException {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		Account a = session.get(Account.class, name);
+
+		session.getTransaction().commit();
+
+		if (a != null) {
 			throw new AccountException("Nick is used");
 		}
-		
-		
-        session = HibernateUtil.getSessionFactory().getCurrentSession();              
-        
-        session.beginTransaction();
-        Account account = new Account(name, password);
-        session.save(account);
-        session.getTransaction().commit();
+
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		Account account = new Account(name, password);
+
+		session.save(account);
+		session.getTransaction().commit();
+
 		return account;
-		
+
 	}
-	
-	static void printAllAccount()
-	{
+
+	static void printAllAccount() {
 		List<Account> list = getAllAccount();
 		for (Account account : list) {
-			System.out.println(account.name +"  "+ account.passHash);
+			System.out.println(account.name + "  " + account.passHash);
 		}
 	}
-	
-	static List<Account> getAllAccount()
-	{
+
+	static List<Account> getAllAccount() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
- 
-        List<Account> list = session.createQuery("from Account").list();
-        session.getTransaction().commit();
-        return list;
+		session.beginTransaction();
+
+		List<Account> list = session.createQuery("from Account").list();
+
+		session.getTransaction().commit();
+		return list;
 	}
-	
-	static int getHash(String password)
-	{
+
+	static int getHash(String password) {
 		return password.hashCode();
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -93,21 +102,24 @@ public class Account {
 	public void setPassHash(int passHash) {
 		this.passHash = passHash;
 	}
-	
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Account)
-		{
-			if(  ((Account)obj).name.equals(name) && passHash == ((Account)obj).passHash) 
-			{
+		if (obj instanceof Account) {
+			if (((Account) obj).name.equals(name) && passHash == ((Account) obj).passHash) {
 				return true;
 			}
 		}
 		return false;
 	}
+
 	@Override
 	public int hashCode() {
-		return name.hashCode()+passHash;
+		return name.hashCode() + passHash;
+	}
+
+	@Override
+	public String toString() {
+		return name + " " + passHash;
 	}
 }

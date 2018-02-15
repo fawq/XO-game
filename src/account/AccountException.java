@@ -11,10 +11,8 @@ public class AccountException extends Exception{
 	}
 	
 	@Override
-	public String toString() {
-		
-		return super.toString();
+	public String getMessage() {
+		return message;
 	}
-	
 
 }

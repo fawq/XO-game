@@ -20,16 +20,20 @@ public class GameState {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
-	int[][] tab;
+	public int[][] tab;
 	int turn = -1; // -1 unset, 0 O , 1 X
 	
 	@ManyToOne
 	Account playerX , playerO;
 
 	
-
-	GameState(Account x , Account o)
+	private GameState()
 	{
+		
+	}
+	public GameState(Account x , Account o , int whoStart)
+	{
+		turn = whoStart;
 		playerX = x;
 		playerO = o;
 		tab = new int[3][3];
@@ -55,7 +59,8 @@ public class GameState {
 			tab[x][y] = state;
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
-			turn=(turn++)%2;
+			turn=(++turn)%2;
+			System.out.println(turn);
 			session.update(this);
 			session.getTransaction().commit();		
 			return true;

@@ -1,4 +1,4 @@
-package game;
+package windows;
 
 import javax.swing.JFrame;
 

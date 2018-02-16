@@ -1,4 +1,4 @@
-package game;
+package windows;
 
 import java.awt.Desktop.Action;
 import java.awt.event.ActionEvent;
@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
+
+import game.Player;
 
 public class MyButton extends JButton {
 	/**
@@ -15,22 +17,25 @@ public class MyButton extends JButton {
 	int myx, myy;
 	Player player;
 
-	public MyButton(Player p) {
+	public MyButton(Player p, int x ,int y) {
 		
 		super();
+		setText(new String(""+p.state.tab[x][y] ));
+		myx = x;
+		myy= y;
 		player = p;
 		addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				player.move(myx, myy);
-				setText(new String( "X" ));
-
+				setText(new String(""+player.state.tab[myx][myy] ));
+				
 			}
 		});
 	}
 
-	public MyButton(Player p, Icon arg0) {
+	/*public MyButton(Player p, Icon arg0) {
 		super(arg0);
 		player = p;
 		addActionListener(new ActionListener() {
@@ -84,7 +89,7 @@ public class MyButton extends JButton {
 
 			}
 		});
-	}
+	}*/
 	
 	public int getmyX() {
 		return myx;

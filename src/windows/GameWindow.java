@@ -1,4 +1,4 @@
-package game;
+package windows;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
+import game.GameState;
+import game.Player;
+
 public class GameWindow extends JFrame{
 
 	MyButton buttonTab[][] = new MyButton[3][3];
@@ -16,19 +19,16 @@ public class GameWindow extends JFrame{
 	GameState state;
 	Player player;
 	
-	public GameWindow( GameState state ) {
+	public GameWindow( GameState state , Player p) {
 		super("XOgame");
-		player = new Player(1 , state) {
-		};
+		this.player = p;
 		this.state = state;
 		getContentPane().setLayout(new GridLayout(3, 3));
 		
 		int xy=0;
 		for (MyButton[] myButtons : buttonTab) {
 			for (MyButton myButton : myButtons) {
-				myButton = new MyButton(player);
-				myButton.setmyX(xy%3);
-				myButton.setmyY(xy/3);
+				myButton = new MyButton(player , xy%3 , xy/3);
 				xy++;
 				getContentPane().add(myButton);
 			}

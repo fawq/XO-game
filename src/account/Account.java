@@ -24,7 +24,7 @@ public class Account {
 		passHash = getHash(password);
 	}
 
-	static Account signIn(String name, String password) throws AccountException {
+	static public Account signIn(String name, String password) throws AccountException {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -42,7 +42,7 @@ public class Account {
 		return a;
 	}
 
-	static Account createAccount(String name, String password) throws AccountException {
+	static public Account createAccount(String name, String password) throws AccountException {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 

@@ -3,22 +3,15 @@ import java.awt.EventQueue;
 
 import org.hibernate.Session;
 
+import account.Account;
+import account.AccountException;
+
 class XOGame {
 	
-	static Session session;
-	static void init()
-	{
-		session = HibernateUtil.getSessionFactory().getCurrentSession();
-		//session.beginTransaction();		
-	}
-	static void commit()
-	{
-		session.getTransaction().commit();
-	}
 	
 	public static void main(String[] args) {
 		
-		init();
+		
 		
 		System.out.println("Start");
 		
@@ -26,7 +19,17 @@ class XOGame {
 			
 			@Override
 			public void run() {
-				new GameWindow( new GameState() );				
+				try {
+					Account.createAccount("p1", "p1");
+					Account.createAccount("p2", "p2");
+				} catch (AccountException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					new GameWindow( new GameState( Account.signIn("p1", "p1") , Account.signIn("p2", "p2") ) );
+				} catch (AccountException e) {
+					e.printStackTrace();
+				}				
 			}
 		});
 		

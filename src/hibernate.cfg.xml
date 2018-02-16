@@ -16,7 +16,6 @@
  		<property name="show_sql">false</property> 
         <property name="hbm2ddl.auto">update</property>
         
-        <mapping class="src.game.GameState.hbm.xml"/>
-        <mapping class="src.account.Account.hbm.xml"/>
+        
     </session-factory>
 </hibernate-configuration>

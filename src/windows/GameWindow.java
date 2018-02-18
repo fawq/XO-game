@@ -38,6 +38,32 @@ public class GameWindow extends JFrame{
 		setVisible(true);
 		setLocation(200, 200);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Thread th = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				while(true)
+				{
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					System.out.println("update()");
+					state.update();
+				}			
+				
+			}
+		});
+		
+		th.start();
 				
 	}
 	

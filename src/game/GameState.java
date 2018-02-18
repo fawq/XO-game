@@ -11,6 +11,7 @@ import org.hibernate.annotations.Type;
 
 import account.Account;
 import account.AccountException;
+import javassist.compiler.ast.IntConst;
 
 
 
@@ -66,6 +67,18 @@ public class GameState {
 			return true;
 		}
 		return false;
+	}
+	
+	public void update()
+	{
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		
+		GameState gs = session.get(GameState.class , new Integer(id));
+		session.getTransaction().commit();	
+		
+		this.tab = gs.tab;
+		this.turn = gs.turn;
 	}
 	
 	

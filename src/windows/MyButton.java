@@ -20,19 +20,26 @@ public class MyButton extends JButton {
 	public MyButton(Player p, int x ,int y) {
 		
 		super();
-		setText(new String(""+p.state.tab[x][y] ));
 		myx = x;
 		myy= y;
 		player = p;
+		updateButton();
+		
 		addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				player.move(myx, myy);
-				setText(new String(""+player.state.tab[myx][myy] ));
 				
+				updateButton();				
 			}
 		});
+	}
+	
+	private void updateButton()
+	{
+		setText(new String(""+player.state.tab[myx][myy] ));
+		setEnabled(  player.state.tab[myx][myy]==-1);
 	}
 
 	/*public MyButton(Player p, Icon arg0) {

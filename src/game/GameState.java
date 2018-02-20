@@ -98,24 +98,7 @@ public class GameState {
 		this.tab = tab;
 	}
 
-	/*public String getTab() {
-		String temp = new String(tab[0]);
-		temp = temp + new String(tab[1]) + new String(tab[2]);
-		
-		return temp;
-	}
 
-	public void setTab(String tab) {
-		int i = 0;
-		char[][] temp = new char[3][3];
-		for (char[] cs : temp) {
-			for (char c : cs) {
-				c = tab.charAt(i++);
-			}
-		}
-		this.tab = temp;
-	}
-*/
 	public int getTurn() {
 		return turn;
 	}

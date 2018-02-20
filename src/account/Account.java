@@ -24,7 +24,7 @@ public class Account {
 		passHash = getHash(password);
 	}
 
-	static public Account signIn(String name, String password) throws AccountException {
+	static public Account signIn(String name, String password) throws AccountException, AccountExistException{
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -33,7 +33,7 @@ public class Account {
 		session.getTransaction().commit();
 
 		if (a == null) {
-			throw new AccountException("Account doen't exist");
+			throw new AccountExistException("Account doen't exist");
 		}
 		if (getHash(password) != a.passHash) {
 			throw new AccountException("Wrong password");

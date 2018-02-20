@@ -4,7 +4,12 @@ public class AccountException extends Exception{
 
 	private static final long serialVersionUID = 1L;
 	
-	String message;
+	protected String message;
+	
+	public AccountException()
+	{
+		
+	}
 	
 	public AccountException(String message) {
 		this.message = message;

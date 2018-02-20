@@ -36,7 +36,7 @@ public class MyButton extends JButton {
 		});
 	}
 	
-	private void updateButton()
+	protected void updateButton()
 	{
 		setText(new String(""+player.state.tab[myx][myy] ));
 		setEnabled(  player.state.tab[myx][myy]==-1);

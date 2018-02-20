@@ -12,6 +12,7 @@ import org.hibernate.Session;
 
 import account.Account;
 import account.AccountException;
+import account.AccountExistException;
 import game.GameState;
 import game.HibernateUtil;
 import game.Player;
@@ -43,19 +44,22 @@ public class LoginWindow extends JFrame{
 				try {
 					XOGame.localAccount = Account.signIn(loginField.getText(), passwordField.getText());
 					
-				} catch (AccountException e1) {
-					e1.printStackTrace();
+				} catch (AccountExistException e1) {
+					
+					try {
+						XOGame.localAccount = Account.createAccount(loginField.getText(), passwordField.getText());
+					} catch (AccountException e2) {
+						e2.printStackTrace();
+					}
+				}
+				catch (AccountException e2)
+				{
+					e2.printStackTrace();
 				}
 				
-				GameState gs;
-				
-				Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-				session.beginTransaction();
-				gs = session.get(GameState.class, new Integer(16));
-				session.getTransaction().commit();			
-				
-				XOGame.changeFrame(new GameWindow(gs, new Player(0, gs)));
+				XOGame.changeFrame(new GameMenuWindow());
 				dispose();
+				
 				
 			}
 		});
